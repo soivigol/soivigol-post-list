@@ -12,10 +12,7 @@ Listado de entradas con paginación, posibilidad de filtrar por categoria, núme
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Plugin for WordPress that creates a listing of your website entries with pagination, category choice and customization options.
 
 == Installation ==
 
