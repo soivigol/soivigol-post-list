@@ -86,28 +86,40 @@ function post_archive_soivigol_post_archive_block_init() {
 			'style'           => 'post-archive-soivigol-post-archive-block',
 			'render_callback' => 'post_archive_soivigol_callback',
 			'attributes'      => array(
-				'category'        => array(
+				'category'     => array(
 					'type' => 'string',
 				),
-				'numPosts'        => array(
-					'type' => 'number',
-				),
-				'numCol'          => array(
-					'type' => 'number',
-				),
-				'backgroundColor' => array(
-					'type' => 'string',
-				),
-				'textColor'       => array(
-					'type' => 'string',
-				),
-				'borderRadius'    => array(
-					'type' => 'number',
-				),
-				'boxShadow'       => array(
+				'pagination'   => array(
 					'type' => 'boolean',
 				),
-				'idBlock'         => array(
+				'numPosts'     => array(
+					'type' => 'number',
+				),
+				'numCol'       => array(
+					'type' => 'number',
+				),
+				'bgColor'      => array(
+					'type' => 'string',
+				),
+				'textColor'    => array(
+					'type' => 'string',
+				),
+				'bgColorH'     => array(
+					'type' => 'string',
+				),
+				'textColorH'   => array(
+					'type' => 'string',
+				),
+				'boxShadow'    => array(
+					'type' => 'boolean',
+				),
+				'boxShadowH'   => array(
+					'type' => 'boolean',
+				),
+				'borderRadius' => array(
+					'type' => 'number',
+				),
+				'idBlock'      => array(
 					'type' => 'string',
 				),
 			),
@@ -133,6 +145,11 @@ function post_archive_soivigol_callback( $attributes ) {
 		$category = null;
 	}
 
+	$pagination = $attributes['pagination'];
+	if ( empty( $pagination ) ) {
+		$pagination = false;
+	}
+
 	$num_posts = $attributes['numPosts'];
 	if ( empty( $num_posts ) ) {
 		$num_posts = 12;
@@ -143,14 +160,24 @@ function post_archive_soivigol_callback( $attributes ) {
 		$num_col = 3;
 	}
 
-	$background_color = $attributes['backgroundColor'];
-	if ( empty( $background_color ) ) {
-		$background_color = 'white';
+	$bg_color = $attributes['bgColor'];
+	if ( empty( $bg_color ) ) {
+		$bg_color = 'white';
 	}
 
 	$text_color = $attributes['textColor'];
 	if ( empty( $text_color ) ) {
 		$text_color = '#333';
+	}
+
+	$bg_color_h = $attributes['bgColorH'];
+	if ( empty( $bg_color_h ) ) {
+		$bg_color_h = 'white';
+	}
+
+	$text_color_h = $attributes['textColorH'];
+	if ( empty( $text_color_h ) ) {
+		$text_color_h = '#333';
 	}
 
 	$border_radius = $attributes['borderRadius'];
@@ -162,6 +189,12 @@ function post_archive_soivigol_callback( $attributes ) {
 	$clase_shadow = '';
 	if ( $box_shadow ) {
 		$clase_shadow = 'item-shadow';
+	}
+
+	$box_shadow_h   = $attributes['boxShadowH'];
+	$clase_shadow_h = '';
+	if ( $box_shadow_h ) {
+		$clase_shadow_h = 'item-shadow-hover';
 	}
 
 	$id_block = $attributes['idBlock'];
@@ -178,8 +211,11 @@ function post_archive_soivigol_callback( $attributes ) {
 	?>
 	<style>
 		.id-<?php echo esc_html( $id_block ); ?> .item {
-			background-color: <?php echo esc_html( $background_color ); ?> ;
+			background-color: <?php echo esc_html( $bg_color ); ?> ;
 			border-radius: <?php echo esc_html( $border_radius ); ?>px;
+		}
+		.id-<?php echo esc_html( $id_block ); ?> .item:hover{
+			background-color: <?php echo esc_html( $bg_color_h ); ?> ;
 		}
 		.id-<?php echo esc_html( $id_block ); ?> .cont-image img {
 			border-radius: <?php echo esc_html( $border_radius ); ?>px <?php echo esc_html( $border_radius ); ?>px 0 0;
@@ -188,8 +224,12 @@ function post_archive_soivigol_callback( $attributes ) {
 		.id-<?php echo esc_html( $id_block ); ?> .item-title {
 			color: <?php echo esc_html( $text_color ); ?> ;
 		}
+		.id-<?php echo esc_html( $id_block ); ?> .item:hover p,
+		.id-<?php echo esc_html( $id_block ); ?> .item:hover .item-title {
+			color: <?php echo esc_html( $text_color_h ); ?> ;
+		}
 	</style>
-	<div class="soivigol-list-post id-<?php echo esc_html( $id_block ); ?> col-<?php echo esc_html( $num_col ); ?> <?php echo ( esc_html( $clase_shadow ) ); ?>">
+	<div class="soivigol-list-post id-<?php echo esc_html( $id_block ); ?> col-<?php echo esc_html( $num_col ); ?> <?php echo ( esc_html( $clase_shadow ) ); ?> <?php echo ( esc_html( $clase_shadow_h ) ); ?>">
 	<?php
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) :
@@ -206,11 +246,11 @@ function post_archive_soivigol_callback( $attributes ) {
 		endwhile;
 		wp_reset_postdata();
 
-		$total_pages = $query->max_num_pages;
 		?>
 	</div>
 		<?php
-		if ( $total_pages > 1 ) {
+		$total_pages = $query->max_num_pages;
+		if ( $total_pages > 1 && $pagination ) {
 
 			$current_page = max( 1, $paged );
 			$base         = explode( '/page', get_pagenum_link( 1 ) );
@@ -227,6 +267,12 @@ function post_archive_soivigol_callback( $attributes ) {
 				)
 			);
 		}
+	} else {
+		?>
+		<div>
+			No hay artículos para mostrar
+		</div>
+		<?php
 	}
 	?>
 	<?php

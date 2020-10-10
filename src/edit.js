@@ -21,6 +21,7 @@ import {
 	RangeControl,
 	ColorPicker,
 	SelectControl,
+	TabPanel
 } from '@wordpress/components';
 
 import ServerSideRender from '@wordpress/server-side-render';
@@ -38,7 +39,7 @@ import ServerSideRender from '@wordpress/server-side-render';
  */
 export default function Edit( props ) {
 	const {
-		attributes: { category, numPosts, numCol, backgroundColor, textColor, borderRadius, boxShadow, idBlock },
+		attributes: { category, pagination, numPosts, numCol, bgColor, textColor, boxShadow, bgColorH, textColorH, boxShadowH, borderRadius, idBlock },
 		setAttributes,
 		className,
 	} = props;
@@ -51,6 +52,10 @@ export default function Edit( props ) {
 		setAttributes( { category: value } );
 	};
 
+	const onChangePagination = ( value ) => {
+		setAttributes( { pagination: value } );
+	};
+
 	const onChangeNumPosts = ( value ) => {
 		setAttributes( { numPosts: value } );
 	};
@@ -60,19 +65,31 @@ export default function Edit( props ) {
 	};
 
 	const onChangeBackgroundColor = ( value ) => {
-		setAttributes( { backgroundColor: value.hex } );
+		setAttributes( { bgColor: value.hex } );
 	};
 
 	const onChangeTextColor = ( value ) => {
 		setAttributes( { textColor: value.hex } );
 	};
 
-	const onChangeBorderRadius = ( value ) => {
-		setAttributes( { borderRadius: value } );
-	};
-
 	const onChangeBoxShadow = ( value ) => {
 		setAttributes( { boxShadow: value } );
+	};
+
+	const onChangeBackgroundColorH = ( value ) => {
+		setAttributes( { bgColorH: value.hex } );
+	};
+
+	const onChangeTextColorH = ( value ) => {
+		setAttributes( { textColorH: value.hex } );
+	};
+
+	const onChangeBoxShadowH = ( value ) => {
+		setAttributes( { boxShadowH: value } );
+	};
+
+	const onChangeBorderRadius = ( value ) => {
+		setAttributes( { borderRadius: value } );
 	};
 
 	const categorys = variables.categorys;
@@ -120,31 +137,97 @@ export default function Edit( props ) {
 							max={ 4 }
 						/>
 					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label= { __( 'Paginación', 'soivigol-post-archive' ) }
+							value={ pagination }
+							onChange={ onChangePagination }
+							checked= { pagination }
+						/>
+					</PanelRow>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Diseño', 'soivigol-post-archive' ) }
 					initialOpen={ false }
 				>
-					<PanelRow>
-						{ __( 'Color de fondo', 'soivigol-post-archive' ) }
-					</PanelRow>
-					<PanelRow>
-						<ColorPicker
-							label= { __( 'Color de fondo', 'soivigol-post-archive' ) }
-							color={ backgroundColor }
-							onChangeComplete={ onChangeBackgroundColor }
-						/>
-					</PanelRow>
-					<PanelRow>
-						{ __( 'Color del texto', 'soivigol-post-archive' ) }
-					</PanelRow>
-					<PanelRow>
-						<ColorPicker
-							label= { __( 'Color del texto', 'soivigol-post-archive' ) }
-							color={ textColor }
-							onChangeComplete={ onChangeTextColor }
-						/>
-					</PanelRow>
+					<TabPanel className="my-tab-panel"
+						activeClass="active-tab"
+						tabs={ [
+							{
+								name: 'tab1',
+								title: __( 'Normal', 'soivigol-post-archive' ) ,
+								className: 'tab-one',
+							},
+							{
+								name: 'tab2',
+								title: __( 'Hover', 'soivigol-post-archive' ),
+								className: 'tab-two',
+							},
+						] }>
+						{
+							( tab ) => {
+								return ('tab1' === tab.name ? (
+									<div>
+										<PanelRow>
+											{ __( 'Color de fondo', 'soivigol-post-archive' ) }
+										</PanelRow>
+										<PanelRow>
+											<ColorPicker
+												label={__('Color de fondo', 'soivigol-post-archive')}
+												color={bgColor}
+												onChangeComplete={onChangeBackgroundColor} />
+										</PanelRow>
+										<PanelRow>
+											{__('Color del texto', 'soivigol-post-archive')}
+										</PanelRow>
+										<PanelRow>
+											<ColorPicker
+												label={__('Color del texto', 'soivigol-post-archive')}
+												color={textColor}
+												onChangeComplete={onChangeTextColor} />
+										</PanelRow>
+										<PanelRow>
+											<ToggleControl
+												label= { __( 'Sobra en la caja', 'soivigol-post-archive' ) }
+												value={ boxShadow }
+												onChange={ onChangeBoxShadow }
+												checked= { boxShadow}
+											/>
+										</PanelRow>
+									</div>
+								) : (
+										<div>
+											<PanelRow>
+												{ __( 'Color de fondo hover', 'soivigol-post-archive' ) }
+											</PanelRow>
+											<PanelRow>
+												<ColorPicker
+													label={__('Color de fondo hover', 'soivigol-post-archive')}
+													color={bgColorH}
+													onChangeComplete={onChangeBackgroundColorH} />
+											</PanelRow>
+											<PanelRow>
+												{__('Color del texto hover', 'soivigol-post-archive')}
+											</PanelRow>
+											<PanelRow>
+												<ColorPicker
+													label={__('Color del texto hover', 'soivigol-post-archive')}
+													color={textColorH}
+													onChangeComplete={onChangeTextColorH} />
+											</PanelRow>
+											<PanelRow>
+												<ToggleControl
+													label= { __( 'Sobra en la caja hover', 'soivigol-post-archive' ) }
+													value={ boxShadowH }
+													onChange={ onChangeBoxShadowH }
+													checked= { boxShadowH }
+												/>
+											</PanelRow>
+										</div>
+									));
+							}
+						}
+    				</TabPanel>
 					<PanelRow>
 						<RangeControl
 							label= { __( 'Border radius', 'soivigol-post-archive' ) }
@@ -152,14 +235,6 @@ export default function Edit( props ) {
 							onChange={ onChangeBorderRadius }
 							min={ 0 }
 							max={ 60 }
-						/>
-					</PanelRow>
-					<PanelRow>
-						<ToggleControl
-							label= { __( 'Sobra en la caja', 'soivigol-post-archive' ) }
-							value={ boxShadow }
-							onChange={ onChangeBoxShadow }
-							checked= { boxShadow}
 						/>
 					</PanelRow>
 				</PanelBody>

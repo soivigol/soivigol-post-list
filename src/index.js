@@ -71,13 +71,16 @@ registerBlockType( 'post-archive/soivigol-post-archive', {
 		category: {
 			type: 'string',
 		},
+		pagination: {
+			type: 'boolean',
+		},
 		numPosts: {
 			type: 'number',
 		},
 		numCol: {
 			type: 'number',
 		},
-		backgroundColor: {
+		bgColor: {
 			type: 'string',
 			default: '#ffffff',
 		},
@@ -85,10 +88,21 @@ registerBlockType( 'post-archive/soivigol-post-archive', {
 			type: 'string',
 			default: '#333333'
 		},
-		borderRadius: {
+		boxShadow: {
 			type: 'boolean',
 		},
-		boxShadow: {
+		bgColorH: {
+			type: 'string',
+			default: '#ffffff',
+		},
+		textColorH: {
+			type: 'string',
+			default: '#333333'
+		},
+		boxShadowH: {
+			type: 'boolean',
+		},
+		borderRadius: {
 			type: 'boolean',
 		},
 		idBlock:{

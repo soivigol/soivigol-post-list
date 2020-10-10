@@ -226,12 +226,16 @@ __webpack_require__.r(__webpack_exports__);
 function Edit(props) {
   var _props$attributes = props.attributes,
       category = _props$attributes.category,
+      pagination = _props$attributes.pagination,
       numPosts = _props$attributes.numPosts,
       numCol = _props$attributes.numCol,
-      backgroundColor = _props$attributes.backgroundColor,
+      bgColor = _props$attributes.bgColor,
       textColor = _props$attributes.textColor,
-      borderRadius = _props$attributes.borderRadius,
       boxShadow = _props$attributes.boxShadow,
+      bgColorH = _props$attributes.bgColorH,
+      textColorH = _props$attributes.textColorH,
+      boxShadowH = _props$attributes.boxShadowH,
+      borderRadius = _props$attributes.borderRadius,
       idBlock = _props$attributes.idBlock,
       setAttributes = props.setAttributes,
       className = props.className;
@@ -245,6 +249,12 @@ function Edit(props) {
   var onChangeCategory = function onChangeCategory(value) {
     setAttributes({
       category: value
+    });
+  };
+
+  var onChangePagination = function onChangePagination(value) {
+    setAttributes({
+      pagination: value
     });
   };
 
@@ -262,7 +272,7 @@ function Edit(props) {
 
   var onChangeBackgroundColor = function onChangeBackgroundColor(value) {
     setAttributes({
-      backgroundColor: value.hex
+      bgColor: value.hex
     });
   };
 
@@ -272,15 +282,33 @@ function Edit(props) {
     });
   };
 
-  var onChangeBorderRadius = function onChangeBorderRadius(value) {
-    setAttributes({
-      borderRadius: value
-    });
-  };
-
   var onChangeBoxShadow = function onChangeBoxShadow(value) {
     setAttributes({
       boxShadow: value
+    });
+  };
+
+  var onChangeBackgroundColorH = function onChangeBackgroundColorH(value) {
+    setAttributes({
+      bgColorH: value.hex
+    });
+  };
+
+  var onChangeTextColorH = function onChangeTextColorH(value) {
+    setAttributes({
+      textColorH: value.hex
+    });
+  };
+
+  var onChangeBoxShadowH = function onChangeBoxShadowH(value) {
+    setAttributes({
+      boxShadowH: value
+    });
+  };
+
+  var onChangeBorderRadius = function onChangeBorderRadius(value) {
+    setAttributes({
+      borderRadius: value
     });
   };
 
@@ -319,28 +347,60 @@ function Edit(props) {
     onChange: onChangeNumCol,
     min: 1,
     max: 4
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Paginación', 'soivigol-post-archive'),
+    value: pagination,
+    onChange: onChangePagination,
+    checked: pagination
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Diseño', 'soivigol-post-archive'),
     initialOpen: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color de fondo', 'soivigol-post-archive')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ColorPicker"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color de fondo', 'soivigol-post-archive'),
-    color: backgroundColor,
-    onChangeComplete: onChangeBackgroundColor
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color del texto', 'soivigol-post-archive')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ColorPicker"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color del texto', 'soivigol-post-archive'),
-    color: textColor,
-    onChangeComplete: onChangeTextColor
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["RangeControl"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["TabPanel"], {
+    className: "my-tab-panel",
+    activeClass: "active-tab",
+    tabs: [{
+      name: 'tab1',
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Normal', 'soivigol-post-archive'),
+      className: 'tab-one'
+    }, {
+      name: 'tab2',
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Hover', 'soivigol-post-archive'),
+      className: 'tab-two'
+    }]
+  }, function (tab) {
+    return 'tab1' === tab.name ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color de fondo', 'soivigol-post-archive')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ColorPicker"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color de fondo', 'soivigol-post-archive'),
+      color: bgColor,
+      onChangeComplete: onChangeBackgroundColor
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color del texto', 'soivigol-post-archive')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ColorPicker"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color del texto', 'soivigol-post-archive'),
+      color: textColor,
+      onChangeComplete: onChangeTextColor
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ToggleControl"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Sobra en la caja', 'soivigol-post-archive'),
+      value: boxShadow,
+      onChange: onChangeBoxShadow,
+      checked: boxShadow
+    }))) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color de fondo hover', 'soivigol-post-archive')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ColorPicker"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color de fondo hover', 'soivigol-post-archive'),
+      color: bgColorH,
+      onChangeComplete: onChangeBackgroundColorH
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color del texto hover', 'soivigol-post-archive')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ColorPicker"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Color del texto hover', 'soivigol-post-archive'),
+      color: textColorH,
+      onChangeComplete: onChangeTextColorH
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ToggleControl"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Sobra en la caja hover', 'soivigol-post-archive'),
+      value: boxShadowH,
+      onChange: onChangeBoxShadowH,
+      checked: boxShadowH
+    })));
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["RangeControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Border radius', 'soivigol-post-archive'),
     value: borderRadius,
     onChange: onChangeBorderRadius,
     min: 0,
     max: 60
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ToggleControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Sobra en la caja', 'soivigol-post-archive'),
-    value: boxShadow,
-    onChange: onChangeBoxShadow,
-    checked: boxShadow
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: className
   }, '' !== idBlock ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default.a, {
@@ -447,13 +507,16 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('pos
     category: {
       type: 'string'
     },
+    pagination: {
+      type: 'boolean'
+    },
     numPosts: {
       type: 'number'
     },
     numCol: {
       type: 'number'
     },
-    backgroundColor: {
+    bgColor: {
       type: 'string',
       default: '#ffffff'
     },
@@ -461,10 +524,21 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('pos
       type: 'string',
       default: '#333333'
     },
-    borderRadius: {
+    boxShadow: {
       type: 'boolean'
     },
-    boxShadow: {
+    bgColorH: {
+      type: 'string',
+      default: '#ffffff'
+    },
+    textColorH: {
+      type: 'string',
+      default: '#333333'
+    },
+    boxShadowH: {
+      type: 'boolean'
+    },
+    borderRadius: {
       type: 'boolean'
     },
     idBlock: {

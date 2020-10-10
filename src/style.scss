@@ -82,6 +82,8 @@
 	}
 	&.item-shadow .item {
 		box-shadow: 0 0 4px 4px lightgray;
+	}
+	&.item-shadow-hover .item {
 		&:hover {
 			box-shadow: 0 0 6px 8px lightgray;
 		}
