@@ -1,0 +1,37 @@
+{
+	"name": "post-archive/soivigol-post-archive",
+	"title": "Listado de entradas",
+	"category": "common",
+	"icon": "grid-view",
+	"description": "Listado de entradas con paginación, posibilidad de filtrar por categoria, número de entradas por página, número de columnas y personalización del diseño de los items.",
+	"textdomain": "soivigol-post-archive",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css",
+	"attributes": {
+		"category":{
+			"type": "string"
+		},
+		"numPosts":{
+			"type": "number"
+		},
+		"numCol":{
+			"type": "number"
+		},
+		"backgroundColor":{
+			"type": "string"
+		},
+		"textColor":{
+			"type": "string"
+		},
+		"borderRadius":{
+			"type": "number"
+		},
+		"boxShadow":{
+			"type": "boolean"
+		}
+	}
+}
