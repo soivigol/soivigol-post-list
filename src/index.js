@@ -31,12 +31,12 @@ import Edit from './edit';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'post-archive/soivigol-post-archive', {
+registerBlockType( 'post-list/soivigol-post-list', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Posts list', 'soivigol-post-archive' ),
+	title: __( 'Posts list', 'soivigol-post-list' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -44,7 +44,7 @@ registerBlockType( 'post-archive/soivigol-post-archive', {
 	 */
 	description: __(
 		'List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.',
-		'soivigol-post-archive'
+		'soivigol-post-list'
 	),
 
 	/**

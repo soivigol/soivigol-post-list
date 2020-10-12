@@ -94,7 +94,7 @@ export default function Edit( props ) {
 
 	const categorys = variables.categorys;
 	const cat_name  = [];
-	cat_name.push( { label: __( 'All categorys', 'soivigol-post-archive' ), value: 'all' } );
+	cat_name.push( { label: __( 'All categorys', 'soivigol-post-list' ), value: 'all' } );
 	Object.entries( categorys ).forEach( element => {
 		cat_name.push( { label: element[1]['name'], value: element[1]['slug'] } );
 	});
@@ -103,12 +103,12 @@ export default function Edit( props ) {
 		<div>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Category', 'soivigol-post-archive' ) }
+					title={ __( 'Category', 'soivigol-post-list' ) }
 					initialOpen={ true }
 				>
 					<PanelRow>
 						<SelectControl
-							label={ __( 'Category', 'soivigol-post-archive' ) }
+							label={ __( 'Category', 'soivigol-post-list' ) }
 							options={ cat_name }
 							value= { category }
 							onChange={ onChangeCategory }
@@ -116,12 +116,12 @@ export default function Edit( props ) {
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Choose layout', 'soivigol-post-archive' ) }
+					title={ __( 'Choose layout', 'soivigol-post-list' ) }
 					initialOpen={ false }
 				>
 					<PanelRow>
 						<RangeControl
-							label= { __( 'Number of posts', 'soivigol-post-archive' ) }
+							label= { __( 'Number of posts', 'soivigol-post-list' ) }
 							value={ numPosts }
 							onChange={ onChangeNumPosts }
 							min={ 3 }
@@ -130,7 +130,7 @@ export default function Edit( props ) {
 					</PanelRow>
 					<PanelRow>
 						<RangeControl
-							label= { __( 'Number of columns', 'soivigol-post-archive' ) }
+							label= { __( 'Number of columns', 'soivigol-post-list' ) }
 							value={ numCol }
 							onChange={ onChangeNumCol }
 							min={ 1 }
@@ -139,7 +139,7 @@ export default function Edit( props ) {
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label= { __( 'Pagination', 'soivigol-post-archive' ) }
+							label= { __( 'Pagination', 'soivigol-post-list' ) }
 							value={ pagination }
 							onChange={ onChangePagination }
 							checked= { pagination }
@@ -147,7 +147,7 @@ export default function Edit( props ) {
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Design', 'soivigol-post-archive' ) }
+					title={ __( 'Design', 'soivigol-post-list' ) }
 					initialOpen={ false }
 				>
 					<TabPanel className="my-tab-panel"
@@ -155,12 +155,12 @@ export default function Edit( props ) {
 						tabs={ [
 							{
 								name: 'tab1',
-								title: __( 'Normal', 'soivigol-post-archive' ) ,
+								title: __( 'Normal', 'soivigol-post-list' ) ,
 								className: 'tab-one',
 							},
 							{
 								name: 'tab2',
-								title: __( 'Hover', 'soivigol-post-archive' ),
+								title: __( 'Hover', 'soivigol-post-list' ),
 								className: 'tab-two',
 							},
 						] }>
@@ -169,26 +169,26 @@ export default function Edit( props ) {
 								return ('tab1' === tab.name ? (
 									<div>
 										<PanelRow>
-											{ __( 'Background color', 'soivigol-post-archive' ) }
+											{ __( 'Background color', 'soivigol-post-list' ) }
 										</PanelRow>
 										<PanelRow>
 											<ColorPicker
-												label={__('Background color', 'soivigol-post-archive')}
+												label={__('Background color', 'soivigol-post-list')}
 												color={bgColor}
 												onChangeComplete={onChangeBackgroundColor} />
 										</PanelRow>
 										<PanelRow>
-											{__('Text color', 'soivigol-post-archive')}
+											{__('Text color', 'soivigol-post-list')}
 										</PanelRow>
 										<PanelRow>
 											<ColorPicker
-												label={__('Text color', 'soivigol-post-archive')}
+												label={__('Text color', 'soivigol-post-list')}
 												color={textColor}
 												onChangeComplete={onChangeTextColor} />
 										</PanelRow>
 										<PanelRow>
 											<ToggleControl
-												label= { __( 'Shadow', 'soivigol-post-archive' ) }
+												label= { __( 'Shadow', 'soivigol-post-list' ) }
 												value={ boxShadow }
 												onChange={ onChangeBoxShadow }
 												checked= { boxShadow}
@@ -198,26 +198,26 @@ export default function Edit( props ) {
 								) : (
 										<div>
 											<PanelRow>
-												{ __( 'Background color hover', 'soivigol-post-archive' ) }
+												{ __( 'Background color hover', 'soivigol-post-list' ) }
 											</PanelRow>
 											<PanelRow>
 												<ColorPicker
-													label={__('Background color hover', 'soivigol-post-archive')}
+													label={__('Background color hover', 'soivigol-post-list')}
 													color={bgColorH}
 													onChangeComplete={onChangeBackgroundColorH} />
 											</PanelRow>
 											<PanelRow>
-												{__('Text color hover', 'soivigol-post-archive')}
+												{__('Text color hover', 'soivigol-post-list')}
 											</PanelRow>
 											<PanelRow>
 												<ColorPicker
-													label={__('Text color hover', 'soivigol-post-archive')}
+													label={__('Text color hover', 'soivigol-post-list')}
 													color={textColorH}
 													onChangeComplete={onChangeTextColorH} />
 											</PanelRow>
 											<PanelRow>
 												<ToggleControl
-													label= { __( 'Shadow hover', 'soivigol-post-archive' ) }
+													label= { __( 'Shadow hover', 'soivigol-post-list' ) }
 													value={ boxShadowH }
 													onChange={ onChangeBoxShadowH }
 													checked= { boxShadowH }
@@ -230,7 +230,7 @@ export default function Edit( props ) {
     				</TabPanel>
 					<PanelRow>
 						<RangeControl
-							label= { __( 'Border radius', 'soivigol-post-archive' ) }
+							label= { __( 'Border radius', 'soivigol-post-list' ) }
 							value={ borderRadius }
 							onChange={ onChangeBorderRadius }
 							min={ 0 }
@@ -242,7 +242,7 @@ export default function Edit( props ) {
 			<div className={ className }>
 				{ '' !== idBlock ? (
 					<ServerSideRender
-						block="post-archive/soivigol-post-archive"
+						block="post-list/soivigol-post-list"
 						attributes={ props.attributes }
 					/>
 				): '' }

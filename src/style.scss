@@ -5,7 +5,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.soivigol-list-post {
+.soivigol-post-list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -91,6 +91,6 @@
 	}
 }
 
-.wp-block-post-archive-soivigol-post-archive p {
-	margin: 0 !important;
+.wp-block-post-list-soivigol-post-list p {
+	margin: 0;
 }
