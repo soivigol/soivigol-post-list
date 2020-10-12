@@ -1,9 +1,9 @@
 {
 	"name": "post-archive/soivigol-post-archive",
-	"title": "Listado de entradas",
+	"title": "Entry list",
 	"category": "common",
 	"icon": "grid-view",
-	"description": "Listado de entradas con paginación, posibilidad de filtrar por categoria, número de entradas por página, número de columnas y personalización del diseño de los items.",
+	"description": "List of entries with pagination, possibility to filter by category, number of entries per page, number of columns and customization of the design of the items.",
 	"textdomain": "soivigol-post-archive",
 	"supports": {
 		"html": false
@@ -15,22 +15,37 @@
 		"category":{
 			"type": "string"
 		},
+		"pagination":{
+			"type": "boolean"
+		},
 		"numPosts":{
 			"type": "number"
 		},
 		"numCol":{
 			"type": "number"
 		},
-		"backgroundColor":{
+		"bgColor":{
 			"type": "string"
 		},
 		"textColor":{
 			"type": "string"
 		},
+		"boxShadow":{
+			"type": "boolean"
+		},
+		"bgColorH":{
+			"type": "string"
+		},
+		"textColorH":{
+			"type": "string"
+		},
+		"boxShadowH":{
+			"type": "boolean"
+		},
 		"borderRadius":{
 			"type": "number"
 		},
-		"boxShadow":{
+		"idBlock":{
 			"type": "boolean"
 		}
 	}

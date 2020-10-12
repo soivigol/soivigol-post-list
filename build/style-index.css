@@ -5,63 +5,64 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.soivigol-list-post {
+.soivigol-post-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding-top: 3rem; }
-  .soivigol-list-post .item {
+  .soivigol-post-list .item {
     display: block;
     width: 100%;
     position: relative;
     margin-bottom: 30px; }
-    .soivigol-list-post .item:hover {
+    .soivigol-post-list .item:hover {
       box-shadow: 0 0 6px 6px lightgray; }
-  .soivigol-list-post.col-2 .item {
+  .soivigol-post-list.col-2 .item {
     width: calc( 50% - 15px); }
   @media screen and (max-width: 768px) {
-    .soivigol-list-post.col-2 .item {
+    .soivigol-post-list.col-2 .item {
       width: 100%; } }
-  .soivigol-list-post.col-3 .item {
+  .soivigol-post-list.col-3 .item {
     width: calc( 33% - 15px); }
   @media screen and (max-width: 768px) {
-    .soivigol-list-post.col-3 .item {
+    .soivigol-post-list.col-3 .item {
       width: 100%; } }
-  .soivigol-list-post.col-4 .item {
+  .soivigol-post-list.col-4 .item {
     width: calc( 25% - 10px); }
   @media screen and (max-width: 768px) {
-    .soivigol-list-post.col-4 .item {
+    .soivigol-post-list.col-4 .item {
       width: calc( 50% - 15px); } }
-  .soivigol-list-post .cont-image {
+  .soivigol-post-list .cont-image {
     position: relative;
     padding-top: 75%;
     overflow: hidden; }
-    .soivigol-list-post .cont-image img {
+    .soivigol-post-list .cont-image img {
       position: absolute;
       min-height: 100%;
+      min-width: 100%;
       top: 0;
       -o-object-fit: cover;
          object-fit: cover;
       overflow: hidden; }
-  .soivigol-list-post .item-title {
+  .soivigol-post-list .item-title {
     padding: 15px;
     margin-bottom: 0;
     font-size: 1.3rem; }
-    .soivigol-list-post .item-title:hover {
+    .soivigol-post-list .item-title:hover {
       text-decoration: none; }
-  .soivigol-list-post p {
+  .soivigol-post-list p {
     padding: 0 15px 15px;
     margin: 0;
     font-size: 1rem; }
-    .soivigol-list-post p:hover {
+    .soivigol-post-list p:hover {
       text-decoration: none; }
-  .soivigol-list-post.item-shadow .item {
+  .soivigol-post-list.item-shadow .item {
     box-shadow: 0 0 4px 4px lightgray; }
-    .soivigol-list-post.item-shadow .item:hover {
-      box-shadow: 0 0 6px 8px lightgray; }
+  .soivigol-post-list.item-shadow-hover .item:hover {
+    box-shadow: 0 0 6px 8px lightgray; }
 
-.wp-block-post-archive-soivigol-post-archive p  {
-  margin: 0 !important; }
+.wp-block-post-list-soivigol-post-list p  {
+  margin: 0; }
 
 
 /*# sourceMappingURL=style-index.css.map*/
