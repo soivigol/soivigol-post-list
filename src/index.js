@@ -36,14 +36,14 @@ registerBlockType( 'post-archive/soivigol-post-archive', {
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Listado de entradas', 'soivigol-post-archive' ),
+	title: __( 'Posts list', 'soivigol-post-archive' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Listado de entradas con paginación, posibilidad de filtrar por categoria, número de entradas por página, número de columnas y personalización del diseño de los items.',
+		'List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.',
 		'soivigol-post-archive'
 	),
 
@@ -67,6 +67,9 @@ registerBlockType( 'post-archive/soivigol-post-archive', {
 		html: false,
 	},
 
+	/**
+	 * Attributes for the different options that are rendered on the front.
+	 */
 	attributes: {
 		category: {
 			type: 'string',

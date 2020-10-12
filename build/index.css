@@ -1,15 +1,2 @@
-@charset "UTF-8";
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.wp-block-post-archive-soivigol-post-archive {
-  border: 1px solid lightgray;
-  padding: 15px; }
+.wp-block-post-archive-soivigol-post-archive{border:1px solid lightgray;padding:15px}.wp-block-post-archive-soivigol-post-archive p {margin:0 !important}
 
-.wp-block-post-archive-soivigol-post-archive p  {
-  margin: 0 !important; }
-
-
-/*# sourceMappingURL=index.css.map*/

@@ -1,16 +1,17 @@
 <?php
 /**
- * Plugin Name:     Listado de entradas
- * Description:     Listado de entradas con paginación, posibilidad de filtrar por categoria, número de entradas por página, número de columnas y personalización del diseño de los items.
+ * Plugin Name:     Posts list
+ * Description:     List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.
  * Version:         0.1.0
- * Author:          David Viña
- * Author URI:      https://www.davidviña.es
+ * Plugin Uri:      https://www.soivigol.es
+ * Author:          David Viña , Destaca
+ * Author URI:      https://www.destaca.es
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:     soivigol-post-archive
  * Domain Path:     /languages
  *
- * @package         post-archive
+ * @package         soivigol-post-archive
  */
 
 /**
@@ -137,6 +138,7 @@ function post_archive_soivigol_callback( $attributes ) {
 	ob_start();
 
 	add_filter( 'excerpt_length', 'soivigol_custom_excerpt_length', 999 );
+	// We take the different variables of attributes.
 	$category = $attributes['category'];
 	if ( empty( $category ) ) {
 		$category = null;
@@ -152,7 +154,7 @@ function post_archive_soivigol_callback( $attributes ) {
 
 	$num_posts = $attributes['numPosts'];
 	if ( empty( $num_posts ) ) {
-		$num_posts = 12;
+		$num_posts = 9;
 	}
 
 	$num_col = $attributes['numCol'];
@@ -199,6 +201,7 @@ function post_archive_soivigol_callback( $attributes ) {
 
 	$id_block = $attributes['idBlock'];
 
+	// Args y query with variables.
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args  = array(
 		'posts_per_page' => $num_posts,
@@ -207,7 +210,7 @@ function post_archive_soivigol_callback( $attributes ) {
 		'order'          => 'DESC',
 		'category_name'  => $category,
 	);
-	$query = new WP_Query( $args );
+	$query = new WP_Query( $args )
 	?>
 	<style>
 		.id-<?php echo esc_html( $id_block ); ?> .item {
@@ -261,8 +264,8 @@ function post_archive_soivigol_callback( $attributes ) {
 						'format'    => 'page/%#%',
 						'current'   => $current_page,
 						'total'     => $total_pages,
-						'prev_text' => __( 'Anterior', 'soivigol-post-archive' ),
-						'next_text' => __( 'Siguiente', 'soivigol-post-archive' ),
+						'prev_text' => __( 'Previous', 'soivigol-post-archive' ),
+						'next_text' => __( 'Next', 'soivigol-post-archive' ),
 					)
 				)
 			);
@@ -270,7 +273,7 @@ function post_archive_soivigol_callback( $attributes ) {
 	} else {
 		?>
 		<div>
-			No hay artículos para mostrar
+			<?php __( 'There are no articles', 'soivigol-post-archive' ); ?>
 		</div>
 		<?php
 	}
