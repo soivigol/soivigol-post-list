@@ -1,4 +1,4 @@
-=== Posts List by Soivigol ===
+=== Posts List ===
 Contributors:      soivigol, destaca
 Tags:              block
 Requires at least: 5.3.2
@@ -30,7 +30,7 @@ How to install the plugin.
 == Screenshots ==
 
 1. Select plugin.
-2. Custom options
+2. Custom options.
 
 == Changelog ==
 

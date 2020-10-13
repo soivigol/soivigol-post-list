@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     Posts list by Soivigol
+ * Plugin Name:     Posts list
  * Description:     List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.
  * Version:         0.1.0
  * Plugin Uri:      https://www.soivigol.es
