@@ -21,7 +21,8 @@ import {
 	RangeControl,
 	ColorPicker,
 	SelectControl,
-	TabPanel
+	TabPanel,
+	TextControl
 } from '@wordpress/components';
 
 import ServerSideRender from '@wordpress/server-side-render';
@@ -39,7 +40,7 @@ import ServerSideRender from '@wordpress/server-side-render';
  */
 export default function Edit( props ) {
 	const {
-		attributes: { category, pagination, numPosts, numCol, bgColor, textColor, boxShadow, bgColorH, textColorH, boxShadowH, borderRadius, idBlock },
+		attributes: { tipoPost, category, pagination, numPosts, numCol, bgColor, textColor, boxShadow, bgColorH, textColorH, boxShadowH, borderRadius, idBlock },
 		setAttributes,
 		className,
 	} = props;
@@ -50,6 +51,10 @@ export default function Edit( props ) {
 
 	const onChangeCategory = ( value ) => {
 		setAttributes( { category: value } );
+	};
+
+	const onChangePost = ( value ) => {
+		setAttributes( { tipoPost: value } );
 	};
 
 	const onChangePagination = ( value ) => {
@@ -103,8 +108,20 @@ export default function Edit( props ) {
 		<div>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Category', 'soivigol-post-list' ) }
+					title={ __( 'Post type', 'soivigol-post-list' ) }
 					initialOpen={ true }
+				>
+					<PanelRow>
+						<TextControl
+							label={ __( 'Post type', 'soivigol-post-list' ) }
+							value= { tipoPost }
+							onChange={ onChangePost }
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Category', 'soivigol-post-list' ) }
+					initialOpen={ false }
 				>
 					<PanelRow>
 						<SelectControl

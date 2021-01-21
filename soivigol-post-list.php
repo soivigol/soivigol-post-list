@@ -87,6 +87,10 @@ function post_list_soivigol_post_list_block_init() {
 			'style'           => 'post-list-soivigol-post-list-block',
 			'render_callback' => 'post_list_soivigol_callback',
 			'attributes'      => array(
+				'tipoPost'     => array(
+					'type'    => 'string',
+					'default' => 'post',
+				),
 				'category'     => array(
 					'type' => 'string',
 				),
@@ -139,6 +143,10 @@ function post_list_soivigol_callback( $attributes ) {
 
 	add_filter( 'excerpt_length', 'soivigol_custom_excerpt_length', 999 );
 	// We take the different variables of attributes.
+	$tipo_post = $attributes['tipoPost'];
+	if ( empty( $tipo_post ) ) {
+		$tipo_post = 'post';
+	}
 	$category = $attributes['category'];
 	if ( empty( $category ) ) {
 		$category = null;
@@ -204,6 +212,7 @@ function post_list_soivigol_callback( $attributes ) {
 	// Args y query with variables.
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args  = array(
+		'post_type'      => $tipo_post,
 		'posts_per_page' => $num_posts,
 		'paged'          => $paged,
 		'orderby'        => 'date',

@@ -71,6 +71,10 @@ registerBlockType( 'post-list/soivigol-post-list', {
 	 * Attributes for the different options that are rendered on the front.
 	 */
 	attributes: {
+		tipoPost: {
+			type: 'string',
+			default: 'post'
+		},
 		category: {
 			type: 'string',
 		},
