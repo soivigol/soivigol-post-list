@@ -252,7 +252,7 @@ function post_list_soivigol_callback( $attributes ) {
 					<?php the_post_thumbnail( 'medium' ); ?>
 				</div>
 				<h3 class="item-title"><?php the_title(); ?></h3>
-				<?php the_excerpt(); ?>
+				<p><?php echo wp_kses_post( wp_strip_all_tags( get_the_excerpt() ) ); ?></p>
 			</a>
 			<?php
 		endwhile;
