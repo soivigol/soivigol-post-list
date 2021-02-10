@@ -45,8 +45,8 @@ export default function Edit( props ) {
 		className,
 	} = props;
 
-	if ( '' === idBlock ) {
-		setAttributes( { idBlock: props.clientId } );
+	if ( ! idBlock ) {
+		setAttributes( { idBlock: Math.floor( Math.random() * 10000 ) } );
 	}
 
 	const onChangeCategory = ( value ) => {

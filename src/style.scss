@@ -38,6 +38,12 @@
 				width: 100%;
 			}
 		}
+		::after {
+			content: "";
+			flex: auto;
+			max-width: calc(33% - 15px);
+			width: 100%;
+		}
 	}
 	&.col-4 {
 		.item {

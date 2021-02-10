@@ -113,7 +113,7 @@ registerBlockType( 'post-list/soivigol-post-list', {
 			type: 'boolean',
 		},
 		idBlock:{
-			type: 'string',
+			type: 'number',
 		}
 	},
 

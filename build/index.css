@@ -1,2 +1,15 @@
-.wp-block-post-list-soivigol-post-list{border:1px solid lightgray;padding:15px}.wp-block-post-list-soivigol-post-list p {margin:0 !important}
+@charset "UTF-8";
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-post-list-soivigol-post-list {
+  border: 1px solid lightgray;
+  padding: 15px; }
 
+.wp-block-post-list-soivigol-post-list p  {
+  margin: 0 !important; }
+
+
+/*# sourceMappingURL=index.css.map*/

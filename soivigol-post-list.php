@@ -125,7 +125,7 @@ function post_list_soivigol_post_list_block_init() {
 					'type' => 'number',
 				),
 				'idBlock'      => array(
-					'type' => 'string',
+					'type' => 'number',
 				),
 			),
 		)
