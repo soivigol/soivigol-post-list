@@ -51,7 +51,7 @@ export default function Edit( props ) {
 
 	const categorys = variables.categorys;
 	const cat_name  = [];
-	cat_name.push( { label: __( 'All categorys', 'soivigol-post-list' ), value: 'all' } );
+	cat_name.push( { label: __( 'All categories', 'soivigol-post-list' ), value: 'all' } );
 	Object.entries( categorys ).forEach( element => {
 		cat_name.push( { label: element[1]['name'], value: element[1]['slug'] } );
 	});

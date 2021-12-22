@@ -43,7 +43,7 @@ registerBlockType( 'post-list/soivigol-post-list', {
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.',
+		'Post list with pagination, possibility to filter by category, set number of posts per page, number of columns and design customization.',
 		'soivigol-post-list'
 	),
 
