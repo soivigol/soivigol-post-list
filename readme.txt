@@ -1,5 +1,5 @@
 === List posts and other contents ===
-Contributors:      soivigol, destaca
+Contributors:      soivigol
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.8.2
