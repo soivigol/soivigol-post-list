@@ -12,3 +12,12 @@
 .wp-block-post-list-soivigol-post-list p {
 	margin: 0 !important;
 }
+
+.active-tab {
+	border-top: 6px solid var(--wp-admin-theme-color);
+	background-color: lightgray;
+}
+
+.components-panel__row .components-base-control {
+	width: 100%;
+}

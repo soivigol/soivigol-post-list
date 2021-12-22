@@ -110,11 +110,45 @@ registerBlockType( 'post-list/soivigol-post-list', {
 			type: 'boolean',
 		},
 		borderRadius: {
-			type: 'boolean',
+			type: 'number',
 		},
 		idBlock:{
 			type: 'number',
+		},
+		aspectImage: {
+			type: 'string',
+		},
+		titleColor:{
+			type: 'string',
+		},
+		titleColorH:{
+			type: 'string',
+		},
+		titleTag:{
+			type: 'string',
+		},
+		titleSize:{
+			type: 'number',
+		},
+		excertp:{
+			type:'boolean',
+			default: true,
+		},
+		excertpLenth:{
+			type:'number',
+			default: 30,
+		},
+		readMore: {
+			type: 'boolean',
+			default: true,
+		},
+		labelReadMore: {
+			type: 'string',
+		},
+		contentPadding: {
+			type: 'number',
 		}
+
 	},
 
 	/**

@@ -15,9 +15,7 @@
 		width: 100%;
 		position: relative;
 		margin-bottom: 30px;
-		&:hover {
-			box-shadow: 0 0 6px 6px lightgray;
-		}
+		text-decoration: none;
 	}
 	&.col-2 {
 		.item {
@@ -38,7 +36,7 @@
 				width: 100%;
 			}
 		}
-		::after {
+		&::after {
 			content: "";
 			flex: auto;
 			max-width: calc(33% - 15px);
@@ -58,7 +56,7 @@
 
 	.cont-image {
 		position: relative;
-		padding-top: 75%;
+		padding-top: 100%;
 		overflow: hidden;
 		img {
 			position: absolute;
@@ -68,20 +66,41 @@
 			object-fit: cover;
 			overflow: hidden;
 		}
+		&.aspect-3x2 {
+			padding-top: 66.66%;
+		}
+		&.aspect-2x3 {
+			padding-top: 150%;
+		}
+		&.aspect-4x3 {
+			padding-top: 75%;
+		}
+		&.aspect-3x4 {
+			padding-top: 133.33%;
+		}
+		&.aspect-16x9 {
+			padding-top: 56.25%;
+		}
+		&.aspect-9x16 {
+			padding-top: 177.77%;
+		}
+	}
+
+	.content {
+		padding: 20px;
 	}
 
 	.item-title {
-		padding: 15px;
-		margin-bottom: 0;
+		padding: 0;
 		font-size: 1.3rem;
+		margin-top: 0;
 		&:hover {
 			text-decoration: none;
 		}
 	}
 
 	p {
-		padding: 0 15px 15px;
-		margin: 0;
+		padding: 0;
 		font-size: 1rem;
 		&:hover {
 			text-decoration: none;

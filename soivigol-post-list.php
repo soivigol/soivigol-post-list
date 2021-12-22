@@ -1,11 +1,12 @@
 <?php
 /**
- * Plugin Name:     Posts list
- * Description:     List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.
- * Version:         0.1.8
- * Plugin Uri:      https://www.soivigol.es
- * Author:          David Viña , Destaca
- * Author URI:      https://www.destaca.es
+ * Plugin Name:     List posts and other contents
+ * Description:     List of posts and other types of contents with pagination, possibility to filter by category in posts, number of posts per page and number of columns.
+ * Customization of the design of each items when it is posible select elements to show, custom title, custom padding of the content, select image aspect ratio and more features.
+ * Version:         0.2
+ * Plugin Uri:      https://www.davidviña.es
+ * Author:          David Viña
+ * Author URI:      https://www.davidviña.es
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:     soivigol-post-list
@@ -31,7 +32,7 @@ add_action( 'plugins_loaded', 'soivigol_language' );
  * @return int (Maybe) modified excerpt length.
  */
 function soivigol_custom_excerpt_length( $length ) {
-	return 20;
+	return 150;
 }
 
 /**
@@ -44,6 +45,25 @@ function post_list_soivigol_post_list_block_init() {
 	$dir = dirname( __FILE__ );
 
 	$script_asset_path = "$dir/build/index.asset.php";
+
+	$all_custom_post_type = get_post_types();
+	unset( $all_custom_post_type['page'] );
+	unset( $all_custom_post_type['acf-field'] );
+	unset( $all_custom_post_type['acf-field-group'] );
+	unset( $all_custom_post_type['wp_template'] );
+	unset( $all_custom_post_type['wp_block'] );
+	unset( $all_custom_post_type['attachment'] );
+	unset( $all_custom_post_type['revision'] );
+	unset( $all_custom_post_type['nav_menu_item'] );
+	unset( $all_custom_post_type['custom_css'] );
+	unset( $all_custom_post_type['customize_changeset'] );
+	unset( $all_custom_post_type['oembed_cache'] );
+	unset( $all_custom_post_type['user_request'] );
+
+	$custom_post_type = array();
+	foreach ( $all_custom_post_type as $value ) {
+		$custom_post_type[] = $value;
+	}
 
 	$index_js     = 'build/index.js';
 	$script_asset = require $script_asset_path;
@@ -58,7 +78,8 @@ function post_list_soivigol_post_list_block_init() {
 		'post-list-soivigol-post-list-block-editor',
 		'variables',
 		array(
-			'categorys' => get_categories(),
+			'categorys'    => get_categories(),
+			'custom_posts' => $custom_post_type,
 		)
 	);
 	wp_set_script_translations( 'post-list-soivigol-post-list-block-editor', 'soivigol-post-list' );
@@ -87,44 +108,77 @@ function post_list_soivigol_post_list_block_init() {
 			'style'           => 'post-list-soivigol-post-list-block',
 			'render_callback' => 'post_list_soivigol_callback',
 			'attributes'      => array(
-				'tipoPost'     => array(
+				'tipoPost'       => array(
 					'type'    => 'string',
 					'default' => 'post',
 				),
-				'category'     => array(
+				'category'       => array(
 					'type' => 'string',
 				),
-				'pagination'   => array(
+				'pagination'     => array(
 					'type' => 'boolean',
 				),
-				'numPosts'     => array(
+				'numPosts'       => array(
 					'type' => 'number',
 				),
-				'numCol'       => array(
+				'numCol'         => array(
 					'type' => 'number',
 				),
-				'bgColor'      => array(
+				'bgColor'        => array(
 					'type' => 'string',
 				),
-				'textColor'    => array(
+				'textColor'      => array(
 					'type' => 'string',
 				),
-				'bgColorH'     => array(
+				'bgColorH'       => array(
 					'type' => 'string',
 				),
-				'textColorH'   => array(
+				'textColorH'     => array(
 					'type' => 'string',
 				),
-				'boxShadow'    => array(
+				'boxShadow'      => array(
 					'type' => 'boolean',
 				),
-				'boxShadowH'   => array(
+				'boxShadowH'     => array(
 					'type' => 'boolean',
 				),
-				'borderRadius' => array(
+				'borderRadius'   => array(
 					'type' => 'number',
 				),
-				'idBlock'      => array(
+				'idBlock'        => array(
+					'type' => 'number',
+				),
+				'aspectImage'    => array(
+					'type' => 'string',
+				),
+				'titleColor'     => array(
+					'type' => 'string',
+				),
+				'titleColorH'    => array(
+					'type' => 'string',
+				),
+				'titleTag'       => array(
+					'type' => 'string',
+				),
+				'titleSize'      => array(
+					'type' => 'number',
+				),
+				'excertp'        => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'excertpLenth'   => array(
+					'type'    => 'number',
+					'default' => 30,
+				),
+				'readMore'       => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'labelReadMore'  => array(
+					'type' => 'string',
+				),
+				'contentPadding' => array(
 					'type' => 'number',
 				),
 			),
@@ -191,7 +245,7 @@ function post_list_soivigol_callback( $attributes ) {
 	}
 
 	$border_radius = $attributes['borderRadius'];
-	if ( empty( $border_radius ) ) {
+	if ( null === $border_radius ) {
 		$border_radius = 10;
 	}
 
@@ -209,6 +263,46 @@ function post_list_soivigol_callback( $attributes ) {
 
 	$id_block = $attributes['idBlock'];
 
+	$title_color = $attributes['titleColor'];
+	if ( empty( $title_color ) ) {
+		$title_color = '#333';
+	}
+
+	$title_color_h = $attributes['titleColorH'];
+	if ( empty( $title_color_h ) ) {
+		$title_color_h = '#333';
+	}
+
+	$title_tag = $attributes['titleTag'];
+	if ( empty( $title_tag ) ) {
+		$title_tag = 'h3';
+	}
+
+	$title_size = $attributes['titleSize'];
+	if ( null === $title_size ) {
+		$title_size = 20;
+	}
+
+	$excertp = $attributes['excertp'];
+	if ( null === $excertp ) {
+		$excertp = true;
+	}
+
+	$read_more = $attributes['readMore'];
+	if ( null === $read_more ) {
+		$read_more = true;
+	}
+
+	$label_read_more = $attributes['labelReadMore'];
+	if ( empty( $label_read_more ) ) {
+		$label_read_more = __( 'Read more', 'soivigol-post-list' );
+	}
+
+	$content_padding = $attributes['contentPadding'];
+	if ( null === $content_padding ) {
+		$content_padding = 10;
+	}
+
 	// Args y query with variables.
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args  = array(
@@ -219,42 +313,72 @@ function post_list_soivigol_callback( $attributes ) {
 		'order'          => 'DESC',
 		'category_name'  => $category,
 	);
-	$query = new WP_Query( $args )
+	$query = new WP_Query( $args );
+	echo '<style>
+		.id-' . esc_html( $id_block ) . ' .item {
+			background-color: ' . esc_html( $bg_color ) . ' ;
+			border-radius: ' . esc_html( $border_radius ) . 'px;
+		}
+		.id-' . esc_html( $id_block ) . ' .item:hover{
+			background-color: ' . esc_html( $bg_color_h ) . ' ;
+		}
+		.id-' . esc_html( $id_block ) . ' .cont-image img {
+			border-radius: ' . esc_html( $border_radius ) . 'px ' . esc_html( $border_radius ) . 'px 0 0;
+		}
+		.id-' . esc_html( $id_block ) . ' .item p,
+		.id-' . esc_html( $id_block ) . ' .item a {
+			color: ' . esc_html( $text_color ) . ' ;
+		}
+		.id-' . esc_html( $id_block ) . ' .item:hover p,
+		.id-' . esc_html( $id_block ) . ' .item:hover a {
+			color: ' . esc_html( $text_color_h ) . ' ;
+		}
+
+		.id-' . esc_html( $id_block ) . ' .item-title.item-title {
+			color: ' . esc_html( $title_color ) . ' ;
+			font-size: ' . esc_html( $title_size ) . 'px;
+		}
+
+		.id-' . esc_html( $id_block ) . ' .item:hover .item-title.item-title {
+			color: ' . esc_html( $title_color_h ) . ' ;
+		}
+
+		.id-' . esc_html( $id_block ) . ' .content {
+			padding: ' . esc_html( $content_padding ) . 'px ;
+		}
+	</style>';
 	?>
-	<style>
-		.id-<?php echo esc_html( $id_block ); ?> .item {
-			background-color: <?php echo esc_html( $bg_color ); ?> ;
-			border-radius: <?php echo esc_html( $border_radius ); ?>px;
-		}
-		.id-<?php echo esc_html( $id_block ); ?> .item:hover{
-			background-color: <?php echo esc_html( $bg_color_h ); ?> ;
-		}
-		.id-<?php echo esc_html( $id_block ); ?> .cont-image img {
-			border-radius: <?php echo esc_html( $border_radius ); ?>px <?php echo esc_html( $border_radius ); ?>px 0 0;
-		}
-		.id-<?php echo esc_html( $id_block ); ?> .item p,
-		.id-<?php echo esc_html( $id_block ); ?> .item-title {
-			color: <?php echo esc_html( $text_color ); ?> ;
-		}
-		.id-<?php echo esc_html( $id_block ); ?> .item:hover p,
-		.id-<?php echo esc_html( $id_block ); ?> .item:hover .item-title {
-			color: <?php echo esc_html( $text_color_h ); ?> ;
-		}
-	</style>
 	<div class="soivigol-post-list id-<?php echo esc_html( $id_block ); ?> col-<?php echo esc_html( $num_col ); ?> <?php echo ( esc_html( $clase_shadow ) ); ?> <?php echo ( esc_html( $clase_shadow_h ) ); ?>">
 	<?php
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) :
 			$query->the_post();
+			if ( $read_more ) {
+				echo '<div class="item">';
+			} else {
+				echo '<a href="' . esc_html( get_the_permalink() ) . '" class="item">';
+			}
 			?>
-			<a href="<?php the_permalink(); ?>" class="item">
-				<div class="cont-image">
-					<?php the_post_thumbnail( 'medium' ); ?>
+				<div class="cont-image <?php echo esc_html( $attributes['aspectImage'] ); ?>">
+					<?php the_post_thumbnail( 'large' ); ?>
 				</div>
-				<h3 class="item-title"><?php the_title(); ?></h3>
-				<p><?php echo wp_kses_post( wp_strip_all_tags( get_the_excerpt() ) ); ?></p>
-			</a>
+				<div class="content">
+					<<?php echo esc_html( $title_tag ); ?> class="item-title"><?php the_title(); ?></<?php echo esc_html( $title_tag ); ?>>
+					<?php
+					if ( $excertp ) {
+						echo '<p>' . wp_kses_post( soivigol_get_excerpt( intval( $attributes['excertpLenth'] ), get_the_excerpt() ) ) . '</p>';
+					}
+					if ( $read_more ) {
+						echo '<p><a href="' . esc_url( get_the_permalink() ) . '">' . esc_html( $label_read_more ) . '</a></p>';
+					}
+					?>
+				</div>
 			<?php
+			if ( $read_more ) {
+				echo '</div>';
+			} else {
+				echo '</a>';
+			}
 		endwhile;
 		wp_reset_postdata();
 
@@ -289,4 +413,16 @@ function post_list_soivigol_callback( $attributes ) {
 	?>
 	<?php
 	return ob_get_clean();
+}
+
+/**
+ * Custom excerpt with custom lenght
+ *
+ * @param int    $lenght Lenght of the excerpt.
+ * @param string $content Content of the post.
+ */
+function soivigol_get_excerpt( $lenght, $content ) {
+	$excerpt = substr( $content, 0, $lenght );
+
+	return $excerpt;
 }

@@ -1,9 +1,9 @@
-=== Posts List ===
+=== List posts and other contents ===
 Contributors:      soivigol, destaca
 Tags:              block
 Requires at least: 5.3.2
-Tested up to:      5.6
-Stable tag:        0.1.8
+Tested up to:      5.8.2
+Stable tag:        0.2
 Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ List of posts with pagination, possibility to filter by category, number of post
 
 == Description ==
 
-Posts List is a block that shows you the posts list of your WordPress website with various customization options. It's the ideal block for creating custom blog pages where you can create a custom header or any other block that adds a more personal style to your blog with the option to create a list of posts with pagination. The plugin can also be used to put the typical list of the last posts.
+List posts and other contents is a block that shows you the posts list of your WordPress website with various customization options. It's the ideal block for creating custom blog pages where you can create a custom header or any other block that adds a more personal style to your blog with the option to create a list of posts with pagination. The plugin can also be used to put the typical list of the last posts.
 It has such interesting customization features as the option to filter by category, the number of columns that were created and the maximum number of posts that will be displayed per page. You can also choose between the paging option or not (it is disabled by default).
 At the design level you can choose the background color, color text and boxshadow a normal or hover. And you can choose if you want the border radius in number of pixels.
 With Posts List you can create blog pages and specific categories with a different design.
@@ -49,3 +49,7 @@ How to install the plugin.
 = 0.1.5 =
 * Release
 - Fix button read more with Astra
+
+= 0.2.0 =
+* Release
+- NEW features and design improvements
