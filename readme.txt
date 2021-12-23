@@ -1,5 +1,5 @@
-=== List posts and other contents ===
-Contributors:      soivigol
+=== List of post and other contents ===
+Contributors:      soivigol,destaca
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.8.2
@@ -8,14 +8,29 @@ Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-List of posts with pagination, possibility to filter by category, number of posts per page, number of columns and customization of the design of the items.
+List of posts and other Custom Post Type with pagination, possibility to filter by category, number of posts per page, number of columns and multiples costumization options.
 
 == Description ==
 
-List posts and other contents is a block that shows you the posts list of your WordPress website with various customization options. It's the ideal block for creating custom blog pages where you can create a custom header or any other block that adds a more personal style to your blog with the option to create a list of posts with pagination. The plugin can also be used to put the typical list of the last posts.
-It has such interesting customization features as the option to filter by category, the number of columns that were created and the maximum number of posts that will be displayed per page. You can also choose between the paging option or not (it is disabled by default).
-At the design level you can choose the background color, color text and boxshadow a normal or hover. And you can choose if you want the border radius in number of pixels.
-With Posts List you can create blog pages and specific categories with a different design.
+List of post and other contents is a block that shows you a list of your posts or other Cutom Post Types of your WordPress website with multiple customization options.
+It is the ideal block to create blog pages or display in a list the posts of a Custom Post Type where you can easily customize the rest of the content of the page without losing the functionality offered by being able to list your posts with the page that offers WordPress own.
+It can also be used to display the latest posts of your blog that are usually displayed on the home page or at other points.
+In order to customize this block to your liking, it offers the following customization options:
+- You can choose from the type of content that is registered on your website.
+- In the case of posts, you can choose a specific category.
+- You can customize the layout, choosing the number of entries, number of columns and if you want pagination. Pagination will only work well with one block per page.
+- You can also customize the background and text colors.
+- Set the border and border-radius of the box.
+- Choose the format in which the featured image will be displayed.
+- You can set the color, label and font size of the title.
+- Set whether you want the excerpt to be displayed, the size of the excerpt in characters, whether you want the link to the individual entry to be made in the whole box or only in a link where you can customize the text.
+
+In addition, this plugin provides 5 hooks so you can insert different customizations inside the loop. A very interesting option if you are creating a Custom Post Type list and need to display different Custom Field options. The hooks are the following:
+- spt_after_bottom_loop
+- spt_before_title_loop
+- spt_after_title_loop
+- spt_after_content_loop
+- spt_after_button_loop
 
 == Installation ==
 

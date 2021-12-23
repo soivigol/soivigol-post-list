@@ -113,23 +113,35 @@ export default function Edit( props ) {
 							label={ __( 'Post type', 'soivigol-post-list' ) }
 							options={ postTypes }
 							value= { attributes.tipoPost }
-							onChange={ (value) => setAttributes( { tipoPost: value } ) }
+							onChange={ (value) => {
+									setAttributes( { tipoPost: value } );
+									if ( 'post' !== value ) {
+										setAttributes( { category: '' } );
+									}
+								}
+							}
 						/>
 					</PanelRow>
 				</PanelBody>
-				<PanelBody
-					title={ __( 'Category', 'soivigol-post-list' ) }
-					initialOpen={ false }
-				>
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Category', 'soivigol-post-list' ) }
-							options={ cat_name }
-							value= { attributes.category }
-							onChange={ (value) => setAttributes( { category: value } ) }
-						/>
-					</PanelRow>
-				</PanelBody>
+				{ 'post' === attributes.tipoPost ? (
+
+						<PanelBody
+							title={ __( 'Category', 'soivigol-post-list' ) }
+							initialOpen={ false }
+						>
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Category', 'soivigol-post-list' ) }
+									options={ cat_name }
+									value= { attributes.category }
+									onChange={ (value) => setAttributes( { category: value } ) }
+								/>
+							</PanelRow>
+						</PanelBody>
+					) : (
+						''
+					)
+				}
 				<PanelBody
 					title={ __( 'Choose layout', 'soivigol-post-list' ) }
 					initialOpen={ false }
@@ -159,6 +171,7 @@ export default function Edit( props ) {
 							onChange={  (value) => setAttributes( { pagination: value } ) }
 							checked= { attributes.pagination }
 						/>
+						<p style={{color: 'red'}}>{__( 'Important! Only block with pagination for page', 'soivigol-post-list' )}</p>
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
@@ -248,6 +261,21 @@ export default function Edit( props ) {
 					title={ __( 'Box border', 'soivigol-post-list' ) }
 					initialOpen={ false }
 					>
+					<PanelRow>
+						<RangeControl
+							label= { __( 'Border size', 'soivigol-post-list' ) }
+							value={ attributes.borderSize }
+							onChange={ (value) => setAttributes( { borderSize: value } ) }
+							min={ 0 }
+							max={ 60 }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<ColorPalette
+							label={__('Border color', 'soivigol-post-list')}
+							value={attributes.borderColor}
+							onChange={(value) => setAttributes( { borderColor: value } )} />
+					</PanelRow>
 					<PanelRow>
 						<RangeControl
 							label= { __( 'Border radius', 'soivigol-post-list' ) }

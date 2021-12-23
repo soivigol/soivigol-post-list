@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     List posts and other contents
- * Description:     List of posts and other types of contents with pagination, possibility to filter by category in posts, number of posts per page and number of columns.
+ * Description:     List of posts and other Custom Post Type with pagination, possibility to filter by category in posts, number of posts per page and number of columns.
  * Customization of the design of each items when it is posible select elements to show, custom title, custom padding of the content, select image aspect ratio and more features.
  * Version:         0.2
  * Plugin Uri:      https://www.davidviña.es
@@ -143,7 +143,16 @@ function post_list_soivigol_post_list_block_init() {
 					'type' => 'boolean',
 				),
 				'borderRadius'   => array(
-					'type' => 'number',
+					'type'    => 'number',
+					'default' => 10,
+				),
+				'borderSize'     => array(
+					'type'    => 'number',
+					'default' => 1,
+				),
+				'borderColor'    => array(
+					'type'    => 'string',
+					'default' => '#333',
 				),
 				'idBlock'        => array(
 					'type' => 'number',
@@ -318,6 +327,7 @@ function post_list_soivigol_callback( $attributes ) {
 		.id-' . esc_html( $id_block ) . ' .item {
 			background-color: ' . esc_html( $bg_color ) . ' ;
 			border-radius: ' . esc_html( $border_radius ) . 'px;
+			border: ' . esc_html( $attributes['borderSize'] ) . 'px solid ' . esc_html( $attributes['borderColor'] ) . ';
 		}
 		.id-' . esc_html( $id_block ) . ' .item:hover{
 			background-color: ' . esc_html( $bg_color_h ) . ' ;
@@ -325,11 +335,11 @@ function post_list_soivigol_callback( $attributes ) {
 		.id-' . esc_html( $id_block ) . ' .cont-image img {
 			border-radius: ' . esc_html( $border_radius ) . 'px ' . esc_html( $border_radius ) . 'px 0 0;
 		}
-		.id-' . esc_html( $id_block ) . ' .item p,
+		.id-' . esc_html( $id_block ) . ' .item .content,
 		.id-' . esc_html( $id_block ) . ' .item a {
 			color: ' . esc_html( $text_color ) . ' ;
 		}
-		.id-' . esc_html( $id_block ) . ' .item:hover p,
+		.id-' . esc_html( $id_block ) . ' .item:hover .content,
 		.id-' . esc_html( $id_block ) . ' .item:hover a {
 			color: ' . esc_html( $text_color_h ) . ' ;
 		}
@@ -358,22 +368,24 @@ function post_list_soivigol_callback( $attributes ) {
 			} else {
 				echo '<a href="' . esc_html( get_the_permalink() ) . '" class="item">';
 			}
-			?>
-				<div class="cont-image <?php echo esc_html( $attributes['aspectImage'] ); ?>">
-					<?php the_post_thumbnail( 'large' ); ?>
-				</div>
-				<div class="content">
-					<<?php echo esc_html( $title_tag ); ?> class="item-title"><?php the_title(); ?></<?php echo esc_html( $title_tag ); ?>>
-					<?php
-					if ( $excertp ) {
-						echo '<p>' . wp_kses_post( soivigol_get_excerpt( intval( $attributes['excertpLenth'] ), get_the_excerpt() ) ) . '</p>';
-					}
-					if ( $read_more ) {
-						echo '<p><a href="' . esc_url( get_the_permalink() ) . '">' . esc_html( $label_read_more ) . '</a></p>';
-					}
-					?>
-				</div>
-			<?php
+			if ( has_post_thumbnail() ) {
+				echo '<div class="cont-image ' . esc_html( $attributes['aspectImage'] ) . '">';
+				echo wp_kses_post( the_post_thumbnail( 'large' ) );
+				echo '</div>';
+			}
+				echo '<div class="content">';
+				do_action( 'spt_before_title_loop' );
+				echo '<' . esc_html( $title_tag ) . ' class="item-title">' . esc_html( get_the_title() ) . '</' . esc_html( $title_tag ) . '>';
+				do_action( 'spt_after_title_loop' );
+			if ( $excertp ) {
+				echo '<p>' . wp_kses_post( soivigol_get_excerpt( intval( $attributes['excertpLenth'] ), get_the_excerpt() ) ) . '</p>';
+				do_action( 'spt_after_content_loop' );
+			}
+			if ( $read_more ) {
+				echo '<p><a href="' . esc_url( get_the_permalink() ) . '">' . esc_html( $label_read_more ) . '</a></p>';
+				do_action( 'spt_after_button_loop' );
+			}
+			echo '</div>';
 			if ( $read_more ) {
 				echo '</div>';
 			} else {
@@ -382,9 +394,7 @@ function post_list_soivigol_callback( $attributes ) {
 		endwhile;
 		wp_reset_postdata();
 
-		?>
-	</div>
-		<?php
+		echo '</dvi>';
 		$total_pages = $query->max_num_pages;
 		if ( $total_pages > 1 && $pagination ) {
 

@@ -112,6 +112,14 @@ registerBlockType( 'post-list/soivigol-post-list', {
 		borderRadius: {
 			type: 'number',
 		},
+		borderSize: {
+			type: 'number',
+			default: 1,
+		},
+		borderColor: {
+			type: 'number',
+			default: '#333',
+		},
 		idBlock:{
 			type: 'number',
 		},
