@@ -117,7 +117,7 @@ registerBlockType( 'post-list/soivigol-post-list', {
 			default: 1,
 		},
 		borderColor: {
-			type: 'number',
+			type: 'string',
 			default: '#333',
 		},
 		idBlock:{

@@ -3,7 +3,7 @@
  * Plugin Name:     List posts and other contents
  * Description:     List of posts and other Custom Post Type with pagination, possibility to filter by category in posts, number of posts per page and number of columns.
  * Customization of the design of each items when it is posible select elements to show, custom title, custom padding of the content, select image aspect ratio and more features.
- * Version:         0.2
+ * Version:         0.2.1
  * Plugin Uri:      https://www.davidviña.es
  * Author:          David Viña
  * Author URI:      https://www.davidviña.es

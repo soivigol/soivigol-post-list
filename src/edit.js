@@ -171,7 +171,7 @@ export default function Edit( props ) {
 							onChange={  (value) => setAttributes( { pagination: value } ) }
 							checked= { attributes.pagination }
 						/>
-						<p style={{color: 'red'}}>{__( 'Important! Only block with pagination for page', 'soivigol-post-list' )}</p>
+						<p style={{color: 'red'}}>{__( 'Important! Only one block with pagination for page', 'soivigol-post-list' )}</p>
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
