@@ -1,0 +1,41 @@
+{
+    // Live Sass compiler.
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".css",
+            "savePath": "/assets/css"
+        }
+    ],
+    "liveSassCompile.settings.generateMap": true,
+    "liveSassCompile.settings.autoprefix": [
+        "> 1%",
+        "last 2 versions"
+    ],
+    // PHPCS.
+    "phpcs.enable": true,
+    "phpcs.executablePath": "/usr/local/bin/phpcs",
+    "phpcs.standard": "WordPress",
+    "phpcs.showWarnings": true,
+    "phpcs.autoConfigSearch": true,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#e07f00",
+        "activityBar.background": "#a55e00",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#8000ff",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#e07f00",
+        "statusBar.background": "#a55e00",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#e07f00",
+        "statusBarItem.remoteBackground": "#a55e00",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#a55e00",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#a55e00",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#094d24"
+}
