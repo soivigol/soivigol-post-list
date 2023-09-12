@@ -3,7 +3,7 @@
  * Plugin Name:     List posts and other contents
  * Description:     List of posts and other Custom Post Type with pagination, possibility to filter by category in posts, number of posts per page and number of columns.
  * Customization of the design of each items when it is posible select elements to show, custom title, custom padding of the content, select image aspect ratio and more features.
- * Version:         0.2.1
+ * Version:         0.2.3
  * Plugin Uri:      https://www.davidviña.es
  * Author:          David Viña
  * Author URI:      https://www.davidviña.es
@@ -113,34 +113,44 @@ function post_list_soivigol_post_list_block_init() {
 					'default' => 'post',
 				),
 				'category'       => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'pagination'     => array(
-					'type' => 'boolean',
+					'type'    => 'boolean',
+					'default' => false,
 				),
 				'numPosts'       => array(
-					'type' => 'number',
+					'type'    => 'number',
+					'default' => 12,
 				),
 				'numCol'         => array(
-					'type' => 'number',
+					'type'    => 'number',
+					'default' => 3,
 				),
 				'bgColor'        => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'textColor'      => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'bgColorH'       => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'textColorH'     => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'boxShadow'      => array(
-					'type' => 'boolean',
+					'type'    => 'boolean',
+					'default' => false,
 				),
 				'boxShadowH'     => array(
-					'type' => 'boolean',
+					'type'    => 'boolean',
+					'default' => false,
 				),
 				'borderRadius'   => array(
 					'type'    => 'number',
@@ -155,22 +165,28 @@ function post_list_soivigol_post_list_block_init() {
 					'default' => '#333',
 				),
 				'idBlock'        => array(
-					'type' => 'number',
+					'type'    => 'number',
+					'default' => 0,
 				),
 				'aspectImage'    => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'titleColor'     => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'titleColorH'    => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'titleTag'       => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'titleSize'      => array(
-					'type' => 'number',
+					'type'    => 'number',
+					'default' => '',
 				),
 				'excertp'        => array(
 					'type'    => 'boolean',
@@ -185,10 +201,12 @@ function post_list_soivigol_post_list_block_init() {
 					'default' => true,
 				),
 				'labelReadMore'  => array(
-					'type' => 'string',
+					'type'    => 'string',
+					'default' => '',
 				),
 				'contentPadding' => array(
-					'type' => 'number',
+					'type'    => 'number',
+					'default' => '',
 				),
 			),
 		)
