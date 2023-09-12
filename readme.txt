@@ -2,7 +2,7 @@
 Contributors:      soivigol,destaca
 Tags:              block
 Requires at least: 5.3.2
-Tested up to:      5.8.2
+Tested up to:      6.3.1
 Stable tag:        0.2.3
 Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
