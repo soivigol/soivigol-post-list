@@ -130,19 +130,19 @@ function post_list_soivigol_post_list_block_init() {
 				),
 				'bgColor'        => array(
 					'type'    => 'string',
-					'default' => '',
+					'default' => '#ffffff',
 				),
 				'textColor'      => array(
 					'type'    => 'string',
-					'default' => '',
+					'default' => '#333333',
 				),
 				'bgColorH'       => array(
 					'type'    => 'string',
-					'default' => '',
+					'default' => '#ffffff',
 				),
 				'textColorH'     => array(
 					'type'    => 'string',
-					'default' => '',
+					'default' => '#333333',
 				),
 				'boxShadow'      => array(
 					'type'    => 'boolean',
